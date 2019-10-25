@@ -1,30 +1,30 @@
 <template>
   <div class="content">
     <el-card class="box-card">
-      <el-card>
-        <!-- logo -->
-        <img src="../../assets/logo_index.png" width="200px" alt />
-        <!-- 表单 -->
-        <el-form ref="form" :model="loginForm">
-          <el-form-item>
-            <el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-input
-              v-model="loginForm.code"
-              style="width:235px;margin-right:10px"
-              placeholder="请输入验证码"
-            ></el-input>
-            <el-button>发送验证码</el-button>
-          </el-form-item>
-          <el-form-item>
-            <el-checkbox :value="true">我已阅读并同意用户协议和隐私条款</el-checkbox>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" style="width:100%">立即登录</el-button>
-          </el-form-item>
-        </el-form>
-      </el-card>
+      <img
+        src="../../assets/logo_index.png"
+        style="width:200px;display:block;margin:0 auto;margin-bottom:30px"
+        alt
+      />
+      <el-form ref="form" :model="loginForm">
+        <el-form-item>
+          <el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input
+            v-model="loginForm.code"
+            placeholder="请输入验证码"
+            style="width:360px;margin-right:35px"
+          ></el-input>
+          <el-button type="info">获取验证码</el-button>
+        </el-form-item>
+
+        <el-checkbox :value="true" style="margin-bottom:20px">我已阅读并同意用户协议和隐私条款</el-checkbox>
+
+        <el-form-item>
+          <el-button type="primary" style="width:100%">立即创建</el-button>
+        </el-form-item>
+      </el-form>
     </el-card>
   </div>
 </template>
@@ -52,8 +52,8 @@ export default {
   top: 0;
 }
 .el-card {
-  width: 500px;
-  height: 300px;
+  width: 550px;
+  height: 330px;
   position: absolute;
   left: 50%;
   top: 50%;
