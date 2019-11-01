@@ -5,7 +5,7 @@
         <!-- 侧边栏 -->
         <div class="box" :class="{smallImg:!isOpen}"></div>
         <el-menu
-          default-active="/"
+          :default-active="$route.path"
           background-color="#002033"
           text-color="#fff"
           :collapse="!isOpen"
@@ -57,14 +57,14 @@
           <span style="font-size:20px;vertical-align:middle;margin-left:10px;">江苏传智播客教育有限公司</span>
           <el-dropdown>
             <span class="el-dropdown-link" style="font-size:20px;">
-              <img src="../../assets/avatar.jpg" />
-              !!!
+              <img :src="userInfo.photo" />
+              <span>{{userInfo.name}}</span>
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item class="el-icon-setting">个人设置</el-dropdown-item>
+              <el-dropdown-item class="el-icon-setting" @click.native="mySelf">个人设置</el-dropdown-item>
               <p></p>
-              <el-dropdown-item class="el-icon-switch-button">退出登录</el-dropdown-item>
+              <el-dropdown-item class="el-icon-switch-button" @click.native="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </el-header>
@@ -77,16 +77,32 @@
 </template>
 
 <script>
+import local from '@/utils/local'
 export default {
   data () {
     return {
-      isOpen: true
+      isOpen: true,
+      userInfo: {}
     }
   },
   methods: {
     clickOpen () {
       this.isOpen = !this.isOpen
+    },
+    mySelf () {
+      this.$router.push('/setting')
+    },
+    logout () {
+      // this.$router.push('/login')
+      local.delUser()
+      this.$router.push('/login')
     }
+
+  },
+  created () {
+    const User = local.getUser() || {}
+    this.userInfo.name = User.name
+    this.userInfo.photo = User.photo
   }
 }
 </script>

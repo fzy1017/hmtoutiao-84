@@ -59,20 +59,27 @@ export default {
   },
   methods: {
     checkForm () {
-      this.$refs['loginForm'].validate(valid => {
+      this.$refs['loginForm'].validate(async valid => {
         if (valid) {
-          this.$http
-            .post('authorizations', this.loginForm)
-            .then(res => {
-              // this.$router    获取当前路由对象
-              console.log(res)
-              // 保存用户信息（token）
-              local.setUser(res.data.data)
-              this.$router.push('/')
-            })
-            .catch(() => {
-              this.$message.error('手机号或验证码不正确')
-            })
+          // this.$http
+          //   .post('authorizations', this.loginForm)
+          //   .then(res => {
+          //     // this.$router    获取当前路由对象
+          //     console.log(res)
+          //     // 保存用户信息（token）
+          //     local.setUser(res.data.data)
+          //     this.$router.push('/')
+          //   })
+          //   .catch(() => {
+          //     this.$message.error('手机号或验证码不正确')
+          //   })
+          try {
+            const { data: { data } } = await this.$http.post('authorizations', this.loginForm)
+            local.setUser(data)
+            this.$router.push('/')
+          } catch (e) {
+            this.$message.error('手机号或验证码不正确')
+          }
         }
       })
     }
@@ -89,7 +96,7 @@ export default {
   left: 0;
   top: 0;
 }
-.el-card {
+.box-card {
   width: 550px;
   height: 330px;
   position: absolute;

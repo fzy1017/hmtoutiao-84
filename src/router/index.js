@@ -5,6 +5,8 @@ import first from '@/views/home'
 import wlCome from '@/views/welcome'
 import noFind from '@/views/404'
 import local from '@/utils/local'
+import artiCle from '@/views/article'
+import Image from '@/views/image'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -15,7 +17,15 @@ const router = new VueRouter({
     children: [{ // 欢迎页面
       path: '/',
       component: wlCome
-    }]
+    }, {
+      path: '/article',
+      component: artiCle
+    },
+    {
+      path: '/image',
+      component: Image
+    }
+    ]
   }, {
     // 登录页面
     path: '/login',

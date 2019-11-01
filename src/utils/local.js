@@ -13,7 +13,7 @@ const local = {
   },
   //   移除信息
   delUser () {
-    window.localStorage.removeItem(KEY)
+    window.sessionStorage.removeItem(KEY)
   }
 }
 export default local

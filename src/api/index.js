@@ -2,10 +2,18 @@ import axios from 'axios'
 import router from '@/router'
 // 添加请求头
 import local from '@/utils/local'
+import BIGJSOM from 'json-bigint'
 axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0/'
 // if (local.getUser()) {
 //   axios.defaults.headers.Authorization = `Bearer ${local.getUser.token}`
 // }
+axios.defaults.transformResponse = [(data) => {
+  try {
+    return BIGJSOM.parse(data)
+  } catch (e) {
+    return data
+  }
+}]
 
 // 请求拦截器
 axios.interceptors.request.use((config) => {
