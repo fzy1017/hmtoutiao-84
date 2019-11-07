@@ -77,12 +77,17 @@
 </template>
 
 <script>
+import eventBus from '@/eventBus'
 import local from '@/utils/local'
 export default {
   data () {
     return {
       isOpen: true,
-      userInfo: {}
+      userInfo: {
+        // 如果响应响应式的数据，建议先申明
+        name: '',
+        photo: ''
+      }
     }
   },
   methods: {
@@ -103,6 +108,14 @@ export default {
     const User = local.getUser() || {}
     this.userInfo.name = User.name
     this.userInfo.photo = User.photo
+    // 接收个人设置组件传过来的数据 谁接收谁绑定
+    eventBus.$on('updateName', (data) => {
+      this.userInfo.name = data.name
+    })
+
+    eventBus.$on('updatePhoto', (photo) => {
+      this.userInfo.photo = photo
+    })
   }
 }
 </script>

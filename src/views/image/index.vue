@@ -14,6 +14,7 @@
           v-model="reqParams.collect"
           @change="todoList"
         >
+          <!-- false 和 true 控制全部与收藏的切换 -->
           <el-radio-button :label="false">全部</el-radio-button>
           <el-radio-button :label="true">收藏</el-radio-button>
           <el-button
@@ -22,6 +23,7 @@
             size="small"
             @click="dialogVisible = true"
           >添加素材</el-button>
+          <!--dialogVisible 控制弹框的显示和隐藏，默认为false 隐藏 -->
         </el-radio-group>
       </div>
       <!-- 图片区 -->
@@ -128,7 +130,7 @@ export default {
     // 上传图片
     shangchuan (res) {
       // 获取上传成功的图片地址  res.data.url
-      console.log(res.data)
+      // console.log(res.data)
       this.reqParams.imageUrl = res.data.url
       // 2. 提示
       this.$message.success('上传成功')

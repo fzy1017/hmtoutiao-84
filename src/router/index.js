@@ -7,6 +7,10 @@ import noFind from '@/views/404'
 import local from '@/utils/local'
 import artiCle from '@/views/article'
 import Image from '@/views/image'
+import Publish from '@/views/publish'
+import comMent from '@/views/comment'
+import Setting from '@/views/setting'
+import Fans from '@/views/fans'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -24,6 +28,22 @@ const router = new VueRouter({
     {
       path: '/image',
       component: Image
+    },
+    {
+      path: '/publish',
+      component: Publish
+    },
+    {
+      path: '/comment',
+      component: comMent
+    },
+    {
+      path: '/setting',
+      component: Setting
+    },
+    {
+      path: '/fans',
+      component: Fans
     }
     ]
   }, {
